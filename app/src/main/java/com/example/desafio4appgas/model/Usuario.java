@@ -1,0 +1,86 @@
+package com.example.desafio4appgas.model;
+
+import java.util.Objects;
+
+public class Usuario {
+    private String nome = "";
+    private String cpf = "";
+    private String endereco = "";
+    private String email = "";
+    private String senha = "";
+
+    public Usuario() {
+    }
+
+    public Usuario(String nome, String cpf, String endereco, String email, String senha) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Usuario)) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(getNome(), usuario.getNome()) && Objects.equals(getCpf(), usuario.getCpf()) && Objects.equals(getEndereco(), usuario.getEndereco()) && Objects.equals(getEmail(), usuario.getEmail()) && Objects.equals(getSenha(), usuario.getSenha());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNome(), getCpf(), getEndereco(), getEmail(), getSenha());
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
+    }
+}
