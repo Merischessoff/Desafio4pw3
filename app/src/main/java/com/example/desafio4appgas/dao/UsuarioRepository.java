@@ -100,7 +100,7 @@ public class UsuarioRepository {
         cursor.moveToFirst();
         Usuario usuario = new Usuario();
         //adiciona os dados no objeto
-        if (cursor.moveToNext()) {
+        if (!cursor.isAfterLast()) {
             usuario.setCpf(cursor.getString(cursor.getColumnIndex("CPF")));
             usuario.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
             usuario.setEndereco(cursor.getString(cursor.getColumnIndex("ENDERECO")));

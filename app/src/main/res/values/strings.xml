@@ -9,8 +9,11 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
+    <string name="menu_lista_produtos">Produtos</string>
+    <string name="menu_lista_pedidos">Pedidos</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="btnlogin">Login</string>
+    <string name="btnCadastrarUsuario">Cadastra-se</string>
     <string name="listar">Listar Objetos nessa Tela</string>
     <string name="cadastrar">Cadastrar Objetos nessa Tela</string>
     <string name="editar">Editar Objeto nessa Tela</string>
@@ -20,6 +23,11 @@
     <string name="ok">Ok</string>
     <string name="cancelar">Cancelar</string>
     <string name="nome">Nome</string>
+    <string name="cpf">Cpf</string>
     <string name="dtNasc">Data de nascimento</string>
     <string name="endereco">Endereço</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
 </resources>

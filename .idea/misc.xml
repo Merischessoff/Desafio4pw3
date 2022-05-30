@@ -3,7 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.152" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.152" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/activity_cadastro_usuario.xml" value="0.2109375" />
         <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/adapter_card.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/adapter_card_icones.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/fragment_cadastrar_usuario.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/fragment_item.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/fragment_list_produto.xml" value="0.1" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/fragment_listar_produto.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/Users/merid/AndroidStudioProjects/Desafio4AppGas/app/src/main/res/menu/main.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ProdutoRepository {
 
-    private BDUtil bdUtil;
+    private static BDUtil bdUtil;
 
     public ProdutoRepository(Context context){
         bdUtil =  new BDUtil(context);

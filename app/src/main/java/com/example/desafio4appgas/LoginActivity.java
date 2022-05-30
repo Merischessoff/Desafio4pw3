@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout layoutSenha;
     private TextInputEditText txtSenha;
     private Button btnLogar;
+    private Button btnCadastrarUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         layoutSenha = findViewById(R.id.layoutSenha);
         txtSenha = findViewById(R.id.txtSenha);
         btnLogar = findViewById(R.id.btnLogar);
+        btnCadastrarUsuario = findViewById(R.id.btnCadastrarUsuario);
+
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,14 +42,21 @@ public class LoginActivity extends AppCompatActivity {
                     if(login()) {
                         startActivity(intent);
                     }else{
-                        Snackbar snackbar = Snackbar.make(view, "Login incorreto", Snackbar.LENGTH_LONG);
+                        Snackbar snackbar = Snackbar.make(view, "Login incorreto! Possui cadastro? ", Snackbar.LENGTH_LONG);
                         snackbar.show();
                     }
-                }
-                else{
-                    Snackbar snackbar = Snackbar.make(view, "Login incorreto", Snackbar.LENGTH_LONG);
+                }else{
+                    Snackbar snackbar = Snackbar.make(view, "Informe um E-mail e uma senha ", Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
+            }
+        });
+
+        btnCadastrarUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), CadastroUsuarioActivity.class);
+                startActivity(intent);
             }
         });
     }

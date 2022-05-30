@@ -16,7 +16,7 @@ public class BDUtil extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*StringBuilder criarTabela = new StringBuilder();
+        StringBuilder criarTabela = new StringBuilder();
         criarTabela.append(" CREATE TABLE PAGAMENTO (");
         criarTabela.append(" ID_PAGAMENTO INTEGER PRIMARY KEY AUTOINCREMENT, ");
         criarTabela.append(" TIPOPAGAMENTO TEXT NOT NULL, ");
@@ -37,9 +37,8 @@ public class BDUtil extends SQLiteOpenHelper {
         criarTabela.append(" QUANTIDADE INTEGER NOT NULL, ");
         criarTabela.append(" CPF TEXT NOT NULL, ");
         criarTabela.append(" ID_PRODUTO INTEGER NOT NULL)");
-        db.execSQL(criarTabela.toString());*/
+        db.execSQL(criarTabela.toString());
 
-        StringBuilder criarTabela = new StringBuilder();
         criarTabela = new StringBuilder();
         criarTabela.append(" CREATE TABLE USUARIO (");
         criarTabela.append(" CPF TEXT NOT NULL, ");
@@ -54,9 +53,9 @@ public class BDUtil extends SQLiteOpenHelper {
     /*Método abaixo é executado quando troa a versão do BD*/
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE IF EXISTS PAGAMENTO ");
-        //db.execSQL("DROP TABLE IF EXISTS PRODUTO ");
-        //db.execSQL("DROP TABLE IF EXISTS PEDIDO ");
+        db.execSQL("DROP TABLE IF EXISTS PAGAMENTO ");
+        db.execSQL("DROP TABLE IF EXISTS PRODUTO ");
+        db.execSQL("DROP TABLE IF EXISTS PEDIDO ");
         db.execSQL("DROP TABLE IF EXISTS USUARIO ");
         onCreate(db);
 
@@ -66,8 +65,4 @@ public class BDUtil extends SQLiteOpenHelper {
     public SQLiteDatabase getConexao(){
         return this.getWritableDatabase();
     }
-
-
-
-
 }

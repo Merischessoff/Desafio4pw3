@@ -1,5 +1,13 @@
 package com.example.desafio4appgas.model;
 
+import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.desafio4appgas.dao.ProdutoRepository;
+import com.example.desafio4appgas.dao.UsuarioRepository;
+import android.content.Context;
+import java.util.List;
 import java.util.Objects;
 
 public class Produto {
@@ -13,6 +21,7 @@ public class Produto {
         this.caracteristicas = caracteristicas;
     }
     public Produto() {}
+
 
     public int getIdProduto() {
         return idProduto;
@@ -37,7 +46,6 @@ public class Produto {
     public void setCaracteristicas(String caracteristicas) {
         this.caracteristicas = caracteristicas;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
