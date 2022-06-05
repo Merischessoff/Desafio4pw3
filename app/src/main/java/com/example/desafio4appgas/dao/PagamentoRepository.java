@@ -19,16 +19,16 @@ public class PagamentoRepository {
         bdUtil =  new BDUtil(context);
     }
 
-    public String insert(String tipoPagamento, Integer parcelas){
+    public long insert(String tipoPagamento, Integer parcelas){
         ContentValues valores = new ContentValues();
         valores.put("TIPOPAGAMENTO", tipoPagamento);
         valores.put("PARCELAS", parcelas);
         long resultado = bdUtil.getConexao().insert("PAGAMENTO", null, valores);
         if (resultado ==-1) {
             bdUtil.close();
-            return "Erro ao inserir registro";
+            return resultado;
         }
-        return "Registro Inserido com sucesso";
+        return resultado;
     }
 
     public Integer delete(int codigo){

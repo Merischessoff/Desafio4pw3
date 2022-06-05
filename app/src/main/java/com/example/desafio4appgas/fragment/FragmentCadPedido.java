@@ -1,66 +1,75 @@
 package com.example.desafio4appgas.fragment;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
 import com.example.desafio4appgas.R;
+import com.example.desafio4appgas.dao.PagamentoRepository;
+import com.example.desafio4appgas.dao.PedidoRepository;
+import com.example.desafio4appgas.dao.ProdutoRepository;
+import com.example.desafio4appgas.model.Produto;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentCadPedido#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
 public class FragmentCadPedido extends Fragment {
+        private TextInputEditText txtNome;
+        private TextInputEditText txtCpf;
+        private Button btnCadPedido;
+        private TextInputEditText txtQuantidade;
+        private TextInputEditText txtPagamento;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public FragmentCadPedido() {
-        // Required empty public constructor
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View root = inflater.inflate(R.layout.fragment_cad_pedido, container, false);
+            Bundle bundle = getArguments();
+            String nome = bundle.getString("NOME");
+            String cpfUsuario = bundle.getString("CPF");
+            txtNome = root.findViewById(R.id.txtNome);
+            txtNome.setText(nome);
+            txtCpf = root.findViewById(R.id.txtCpf);
+            txtCpf.setText(cpfUsuario);
+            txtPagamento = root.findViewById(R.id.txtPagamento);
+            txtQuantidade = root.findViewById(R.id.txtQuantidade);
+            btnCadPedido = root.findViewById(R.id.btnCadPedido);
+            btnCadPedido.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    inserirPedido();
+                }
+            });
+            return root;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentCadPedido.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentCadPedido newInstance(String param1, String param2) {
-        FragmentCadPedido fragment = new FragmentCadPedido();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private void inserirPedido() {
+            long idPedido = 0;
+            PagamentoRepository pagamentoRepository = new PagamentoRepository(getActivity().getBaseContext());
+            long idPagamento = pagamentoRepository.insert(txtPagamento.getText().toString(), 1);
+            ProdutoRepository produtoRepository = new ProdutoRepository(getActivity().getBaseContext());
+            Produto p = new Produto();
+            p = produtoRepository.getProduto(txtNome.getText().toString());
+            if (idPagamento !=-1 && p.getIdProduto() > 0) {
+                    PedidoRepository pedidoRepository = new PedidoRepository(getActivity().getBaseContext());
+                    idPedido = pedidoRepository.insert(idPagamento, p.getIdProduto(), Long.parseLong(txtQuantidade.getText().toString()), txtCpf.getText().toString());
+            }
+            if (idPedido !=-1)
+                Snackbar.make(getView(), "Pedido nº. " + idPedido, Snackbar.LENGTH_LONG).show();
+                Navigation.findNavController(getView()).navigate(R.id.nav_fragmentListPedido);
+
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cad_pedido, container, false);
-    }
 }

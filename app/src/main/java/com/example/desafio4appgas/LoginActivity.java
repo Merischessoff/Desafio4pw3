@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText txtSenha;
     private Button btnLogar;
     private Button btnCadastrarUsuario;
+    private Usuario usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(validarCampos()){
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     if(login()) {
+                        intent.putExtra("cpfUsuario", usuario.getCpf());
                         startActivity(intent);
                     }else{
                         Snackbar snackbar = Snackbar.make(view, "Login incorreto! Possui cadastro? ", Snackbar.LENGTH_LONG);
@@ -85,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         System.out.println(txtSenha.getText().toString());
         UsuarioRepository usuarioRepository = new UsuarioRepository(getBaseContext());
         Log.d("MainActivity", "método login()" + txtEmail.getText().toString() + " " + txtSenha.getText().toString());
-        Usuario usuario = usuarioRepository.loginUsuario(txtEmail.getText().toString(), txtSenha.getText().toString());
+        usuario = usuarioRepository.loginUsuario(txtEmail.getText().toString(), txtSenha.getText().toString());
         if(!usuario.getCpf().equalsIgnoreCase("")){
             return true;
         }else {

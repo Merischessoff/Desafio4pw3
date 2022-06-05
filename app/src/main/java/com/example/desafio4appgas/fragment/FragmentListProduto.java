@@ -1,11 +1,9 @@
 package com.example.desafio4appgas.fragment;
 
-import static com.example.desafio4appgas.dao.ProdutoRepository.*;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,10 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.desafio4appgas.R;
-import com.example.desafio4appgas.adapter.MyAdapter;
+import com.example.desafio4appgas.adapter.MyAdapterProduto;
 import com.example.desafio4appgas.dao.ProdutoRepository;
 import com.example.desafio4appgas.model.Produto;
-import com.example.desafio4appgas.util.BDUtil;
 
 import java.util.List;
 
@@ -28,16 +25,18 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class FragmentListProduto extends Fragment{
+    private String cpfUsuario;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_list_produto, container, false);
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
         //configurar o adapter - que formata que o layout de cada item do recycler
+        Intent intent = getActivity().getIntent();
+        cpfUsuario = intent.getStringExtra("cpfUsuario");
 
-
-        MyAdapter myAdapter = new MyAdapter(inicializaLista(getActivity().getBaseContext()));
-        recyclerView.setAdapter(myAdapter);
+        MyAdapterProduto myAdapterProduto = new MyAdapterProduto(inicializaLista(getActivity().getBaseContext()), cpfUsuario);
+        recyclerView.setAdapter(myAdapterProduto);
         //linha de código usada para otimizar o recycler
         recyclerView.setHasFixedSize(true);
 
@@ -51,9 +50,9 @@ public class FragmentListProduto extends Fragment{
     }
 
     public static List<Produto> inicializaLista(Context context) {
-
         ProdutoRepository produtoRepository = new ProdutoRepository(context);
         List<Produto> produtos = produtoRepository.getAll();
         return produtos;
     }
+
 }

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class BDUtil extends SQLiteOpenHelper {
 
-    private static final String BASE_DE_DADOS = "DESAFIO4";
+    private static final String BASE_DE_DADOS = "DESAFIO4BUTANOGAS1";
     private static final int VERSAO = 1;
 
     public BDUtil(Context context){
@@ -39,7 +39,7 @@ public class BDUtil extends SQLiteOpenHelper {
 
         criarTabela = new StringBuilder();
         criarTabela.append(" CREATE TABLE PEDIDO (");
-        criarTabela.append(" NUM_PEDIDO INTEGER NOT NULL, ");
+        criarTabela.append(" NUM_PEDIDO INTEGER PRIMARY KEY AUTOINCREMENT, ");
         criarTabela.append(" ID_PAGAMENTO INTEGER NOT NULL, ");
         criarTabela.append(" QUANTIDADE INTEGER NOT NULL, ");
         criarTabela.append(" CPF TEXT NOT NULL, ");
@@ -53,6 +53,11 @@ public class BDUtil extends SQLiteOpenHelper {
         criarTabela.append(" EMAIL TEXT NOT NULL, ");
         criarTabela.append(" SENHA TEXT NOT NULL, ");
         criarTabela.append(" ENDERECO TEXT NOT NULL)");
+        db.execSQL(criarTabela.toString());
+
+        criarTabela = new StringBuilder();
+        criarTabela.append(" INSERT INTO USUARIO (CPF, NOME, EMAIL, SENHA, ENDERECO)");
+        criarTabela.append(" VALUES ('11111111111', 'meridiane', 'gonkaschessoff@gmail.com', '1111', 'endereco')");
         db.execSQL(criarTabela.toString());
 
     }

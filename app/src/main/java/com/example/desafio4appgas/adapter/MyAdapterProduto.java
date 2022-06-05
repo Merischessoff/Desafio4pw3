@@ -1,8 +1,6 @@
 package com.example.desafio4appgas.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +9,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.desafio4appgas.model.Pedido;
 import com.example.desafio4appgas.model.Produto;
 
 import java.util.ArrayList;
@@ -23,11 +21,16 @@ import java.util.List;
 import com.example.desafio4appgas.R;
 
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class MyAdapterProduto extends RecyclerView.Adapter<MyAdapterProduto.MyViewHolder> {
     List<Produto> listaProdutos = new ArrayList<>();
+    String cpfUsuario = "";
     Context context;
-    public MyAdapter(List<Produto> produtos) {
+    public MyAdapterProduto(List<Produto> produtos, String cpfUsuario) {
         this.listaProdutos = produtos;
+        this.cpfUsuario = cpfUsuario;
+    }
+
+    public MyAdapterProduto(List<Pedido> inicializaLista) {
     }
 
     @NonNull
@@ -50,15 +53,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Produto p = listaProdutos.get(position);
         myViewHolder.nome.setText(p.getNome());
         myViewHolder.caracteristicas.setText(p.getCaracteristicas());
-        myViewHolder.btnFazerPedido.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         Bundle bundle = new Bundle();
         bundle.putString("NOME", listaProdutos.get(position).getNome());
         bundle.putString("END", listaProdutos.get(position).getCaracteristicas());
+        bundle.putString("CPF", cpfUsuario);
         myViewHolder.btnFazerPedido.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_fragmentCadPedido, bundle));
     }
 

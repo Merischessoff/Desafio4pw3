@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class Produto {
-    private int idProduto;
-    private String nome;
-    private String caracteristicas;
+    private long idProduto = 0;
+    private String nome = "";
+    private String caracteristicas = "";
 
     public Produto(int idProduto, String nome, String caracteristicas) {
         this.idProduto = idProduto;
@@ -23,11 +23,11 @@ public class Produto {
     public Produto() {}
 
 
-    public int getIdProduto() {
+    public long getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(int idProduto) {
+    public void setIdProduto(long idProduto) {
         this.idProduto = idProduto;
     }
 

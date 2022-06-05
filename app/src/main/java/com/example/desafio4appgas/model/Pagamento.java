@@ -3,9 +3,9 @@ package com.example.desafio4appgas.model;
 import java.util.Objects;
 
 public class Pagamento {
-    private int idPagamento;
-    private String tipoPagamento;
-    private int parcelas;
+    private int idPagamento = 0;
+    private String tipoPagamento = "";
+    private int parcelas = 0;
 
     public Pagamento(int idPagamento, String tipoPagamento, int parcelas) {
         idPagamento = idPagamento;

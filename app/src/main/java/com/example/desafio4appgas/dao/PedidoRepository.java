@@ -4,8 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
+import com.example.desafio4appgas.model.Pagamento;
 import com.example.desafio4appgas.model.Pedido;
+import com.example.desafio4appgas.model.Produto;
+import com.example.desafio4appgas.model.Usuario;
 import com.example.desafio4appgas.util.BDUtil;
 
 import java.util.ArrayList;
@@ -21,18 +25,18 @@ public class PedidoRepository {
         bdUtil =  new BDUtil(context);
     }
 
-    public String insert(int num_pedido, int id_pagamento, int id_produto, int quantidade){
+    public long insert(long id_pagamento, long id_produto, long quantidade, String cpf){
         ContentValues valores = new ContentValues();
-        valores.put("NUM_PEDIDO", num_pedido);
         valores.put("ID_PAGAMENTO", id_pagamento);
         valores.put("QUANTIDADE", quantidade);
         valores.put("ID_PRODUTO", id_produto);
+        valores.put("CPF", cpf);
         long resultado = bdUtil.getConexao().insert("PEDIDO", null, valores);
         if (resultado ==-1) {
             bdUtil.close();
-            return "Erro ao inserir registro";
+            return resultado;
         }
-        return "Registro Inserido com sucesso";
+        return resultado;
     }
 
     public Integer delete(int codigo){
@@ -44,27 +48,29 @@ public class PedidoRepository {
     }
 
     @SuppressLint("Range")
-    public List<Pedido> getAll(){
+    public List<Pedido> getAll(String cpf){
         List<Pedido> pedidos = new ArrayList<>();
         // monta a consulta
         StringBuilder stringBuilderQuery = new StringBuilder();
-        stringBuilderQuery.append("SELECT NUM_PEDIDO, ID_PAGAMENTO, ID_PRODUTO, QUANTIDADE ");
-        stringBuilderQuery.append("FROM PEDIDO ");
+        stringBuilderQuery.append("SELECT NUM_PEDIDO, ID_PAGAMENTO, ID_PRODUTO, QUANTIDADE, CPF ");
+        stringBuilderQuery.append("FROM PEDIDO WHERE CPF = '"+ cpf + "' ");
         stringBuilderQuery.append("ORDER BY NUM_PEDIDO");
         //consulta os registros que estão no BD
         Cursor cursor = bdUtil.getConexao().rawQuery(stringBuilderQuery.toString(), null);
         //aponta cursos para o primeiro registro
         cursor.moveToFirst();
-        Pedido pedido = null;
         //Percorre os registros até atingir o fim da lista de registros
         while (!cursor.isAfterLast()){
             // Cria objetos do tipo tarefa
-            pedido =  new Pedido();
-            //adiciona os dados no objeto
+            Pedido pedido = new Pedido();
+            int numProduto = cursor.getInt(cursor.getColumnIndex("ID_PRODUTO"));
+            int numPagamento = cursor.getInt(cursor.getColumnIndex("ID_PAGAMENTO"));
+            String cpfUsuario = cursor.getString(cursor.getColumnIndex("CPF"));
             pedido.setNumPedido(cursor.getInt(cursor.getColumnIndex("NUM_PEDIDO")));
             pedido.setQuantidade(cursor.getInt(cursor.getColumnIndex("QUANTIDADE")));
-            pedido.setPagamento(pagamentoRepository.getPagamento(cursor.getInt(cursor.getColumnIndex("ID_PAGAMENTO"))));
-            pedido.setProdutos(produtoRepository.getProduto(cursor.getInt(cursor.getColumnIndex("ID_PRODUTO"))));
+            pedido.getProduto().setIdProduto(numProduto);
+            pedido.getUsuario().setCpf(cpfUsuario);
+            pedido.getPagamento().setIdPagamento(numPagamento);
             //adiciona o objeto na lista
             pedidos.add(pedido);
             //aponta para o próximo registro
@@ -79,13 +85,15 @@ public class PedidoRepository {
     public Pedido getPedido(int codigo){
         Cursor cursor =  bdUtil.getConexao().rawQuery("SELECT * FROM PEDIDO WHERE NUM_PEDIDO = "+ codigo,null);
         cursor.moveToFirst();
-        Pedido pedido=  new Pedido();
-        //adiciona os dados no objeto
+        Pedido pedido = new Pedido();
+        int numProduto = cursor.getInt(cursor.getColumnIndex("ID_PRODUTO"));
+        int numPagamento = cursor.getInt(cursor.getColumnIndex("ID_PAGAMENTO"));
+        String cpfUsuario = cursor.getString(cursor.getColumnIndex("CPF"));
         pedido.setNumPedido(cursor.getInt(cursor.getColumnIndex("NUM_PEDIDO")));
         pedido.setQuantidade(cursor.getInt(cursor.getColumnIndex("QUANTIDADE")));
-        pedido.setPagamento(pagamentoRepository.getPagamento(cursor.getInt(cursor.getColumnIndex("ID_PAGAMENTO"))));
-        pedido.setProdutos(produtoRepository.getProduto(cursor.getInt(cursor.getColumnIndex("ID_PRODUTO"))));
-        pedido.setUsuario(usuarioRepository.getUsuario(cursor.getString(cursor.getColumnIndex("CPF"))));
+        pedido.getProduto().setIdProduto(numProduto);
+        pedido.getUsuario().setCpf(cpfUsuario);
+        pedido.getPagamento().setIdPagamento(numPagamento);
         bdUtil.close();
         return pedido;
     }

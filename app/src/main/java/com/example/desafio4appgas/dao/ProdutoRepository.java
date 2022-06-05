@@ -69,11 +69,23 @@ public class ProdutoRepository {
     }
 
     @SuppressLint("Range")
-    public Produto getProduto(int codigo){
+    public Produto getProduto(long codigo){
         Cursor cursor =  bdUtil.getConexao().rawQuery("SELECT * FROM PRODUTO WHERE ID_PRODUTO = "+ codigo,null);
         cursor.moveToFirst();
         Produto p = new Produto();
         p.setIdProduto(cursor.getInt(cursor.getColumnIndex("ID_PRODUTO")));
+        p.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
+        p.setCaracteristicas(cursor.getString(cursor.getColumnIndex("CARACTERISTICAS")));
+        bdUtil.close();
+        return p;
+    }
+
+    @SuppressLint("Range")
+    public Produto getProduto(String nome){
+        Cursor cursor =  bdUtil.getConexao().rawQuery("SELECT * FROM PRODUTO WHERE NOME = '"+ nome +"'",null);
+        cursor.moveToFirst();
+        Produto p = new Produto();
+        p.setIdProduto(cursor.getLong(cursor.getColumnIndex("ID_PRODUTO")));
         p.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
         p.setCaracteristicas(cursor.getString(cursor.getColumnIndex("CARACTERISTICAS")));
         bdUtil.close();
@@ -85,7 +97,7 @@ public class ProdutoRepository {
         contentValues.put("NOME", produto.getNome());
         contentValues.put("CARACTERISTICAS", produto.getCaracteristicas());
         //atualiza o objeto usando a chave
-        int retorno = bdUtil.getConexao().update("PRODUTO", contentValues, "ID_PRODUTO = ?", new String[]{Integer.toString(produto.getIdProduto())});
+        int retorno = bdUtil.getConexao().update("PRODUTO", contentValues, "ID_PRODUTO = ?", new String[]{Long.toString(produto.getIdProduto())});
         bdUtil.close();
         return retorno;
     }

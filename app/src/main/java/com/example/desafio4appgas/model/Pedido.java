@@ -5,20 +5,20 @@ import java.util.List;
 import java.util.Objects;
 
 public class Pedido {
-    private int numPedido;
-    private Pagamento pagamento;
-    private int quantidade;
-    private List<Produto> produtos = new ArrayList<Produto>();
-    private Usuario usuario;
+    private int numPedido = 0;
+    private Pagamento pagamento = new Pagamento();
+    private int quantidade = 0;
+    private Produto produto = new Produto();
+    private Usuario usuario = new Usuario();
 
     public Pedido() {
     }
 
-    public Pedido(int numPedido, Pagamento pagamento, int quantidade, List<Produto> produtos, Usuario usuario) {
+    public Pedido(int numPedido, Pagamento pagamento, int quantidade, Produto produto, Usuario usuario) {
         this.numPedido = numPedido;
         this.pagamento = pagamento;
         this.quantidade = quantidade;
-        this.produtos = produtos;
+        this.produto = produto;
         this.usuario = usuario;
     }
 
@@ -46,12 +46,12 @@ public class Pedido {
         this.quantidade = quantidade;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProdutos(Produto produto) {
-        this.produtos.add(produto);
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public Usuario getUsuario() {
@@ -67,12 +67,12 @@ public class Pedido {
         if (this == o) return true;
         if (!(o instanceof Pedido)) return false;
         Pedido pedido = (Pedido) o;
-        return getNumPedido() == pedido.getNumPedido() && getQuantidade() == pedido.getQuantidade() && Objects.equals(getPagamento(), pedido.getPagamento()) && Objects.equals(getProdutos(), pedido.getProdutos()) && Objects.equals(getUsuario(), pedido.getUsuario());
+        return getNumPedido() == pedido.getNumPedido() && getQuantidade() == pedido.getQuantidade() && Objects.equals(getPagamento(), pedido.getPagamento()) && Objects.equals(getProduto(), pedido.getProduto()) && Objects.equals(getUsuario(), pedido.getUsuario());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNumPedido(), getPagamento(), getQuantidade(), getProdutos(), getUsuario());
+        return Objects.hash(getNumPedido(), getPagamento(), getQuantidade(), getProduto(), getUsuario());
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Pedido {
                 "numPedido=" + numPedido +
                 ", pagamento=" + pagamento +
                 ", quantidade=" + quantidade +
-                ", produtos=" + produtos +
+                ", produtos=" + produto +
                 ", usuario=" + usuario +
                 '}';
     }
