@@ -31,6 +31,13 @@ public class BDUtil extends SQLiteOpenHelper {
         db.execSQL(criarTabela.toString());
 
         criarTabela = new StringBuilder();
+        criarTabela.append(" INSERT INTO PRODUTO (");
+        criarTabela.append(" NOME, ");
+        criarTabela.append(" CARACTERISTICAS)");
+        criarTabela.append(" VALUES('botijão 13 kilos', '13 kilos')");
+        db.execSQL(criarTabela.toString());
+
+        criarTabela = new StringBuilder();
         criarTabela.append(" CREATE TABLE PEDIDO (");
         criarTabela.append(" NUM_PEDIDO INTEGER NOT NULL, ");
         criarTabela.append(" ID_PAGAMENTO INTEGER NOT NULL, ");

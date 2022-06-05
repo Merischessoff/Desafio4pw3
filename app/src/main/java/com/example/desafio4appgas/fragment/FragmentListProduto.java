@@ -35,7 +35,8 @@ public class FragmentListProduto extends Fragment{
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
         //configurar o adapter - que formata que o layout de cada item do recycler
 
-        MyAdapter myAdapter = new MyAdapter(inicializaLista());
+
+        MyAdapter myAdapter = new MyAdapter(inicializaLista(getActivity().getBaseContext()));
         recyclerView.setAdapter(myAdapter);
         //linha de código usada para otimizar o recycler
         recyclerView.setHasFixedSize(true);
@@ -49,9 +50,9 @@ public class FragmentListProduto extends Fragment{
         return root;
     }
 
-    public static List<Produto> inicializaLista() {
+    public static List<Produto> inicializaLista(Context context) {
 
-        ProdutoRepository produtoRepository = new ProdutoRepository();
+        ProdutoRepository produtoRepository = new ProdutoRepository(context);
         List<Produto> produtos = produtoRepository.getAll();
         return produtos;
     }

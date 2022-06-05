@@ -50,7 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Produto p = listaProdutos.get(position);
         myViewHolder.nome.setText(p.getNome());
         myViewHolder.caracteristicas.setText(p.getCaracteristicas());
-        myViewHolder.btnAdicionar.setOnClickListener(new View.OnClickListener() {
+        myViewHolder.btnFazerPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -59,7 +59,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Bundle bundle = new Bundle();
         bundle.putString("NOME", listaProdutos.get(position).getNome());
         bundle.putString("END", listaProdutos.get(position).getCaracteristicas());
-        myViewHolder.btnAdicionar.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_fragmentListProduto, bundle));
+        myViewHolder.btnFazerPedido.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.nav_fragmentCadPedido, bundle));
     }
 
     @Override
@@ -72,7 +72,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         //dados da pessoa que serão exibidos no recycler
         TextView nome;
         TextView caracteristicas;
-        ImageButton btnAdicionar;
+        ImageButton btnFazerPedido;
 
         //se usar adapter_card -> ajustar o ViewHolder para usar Button
         //Button btnDelete;
@@ -82,7 +82,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             //passa uma referência para os componentes que estão na interface
             nome = itemView.findViewById(R.id.textViewNome);
             caracteristicas = itemView.findViewById(R.id.textViewCaracteristicas);
-            btnAdicionar = itemView.findViewById(R.id.btnAdicionar);
+            btnFazerPedido = itemView.findViewById(R.id.btnFazerPedido);
         }
     }
 }

@@ -11,9 +11,25 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
     <fragment
+        android:id="@+id/nav_fragmentListPedido"
+        android:name="com.example.desafio4appgas.fragment.FragmentListPedido"
+        android:label="fragment_list_pedido"
+        tools:layout="@layout/fragment_list_pedido" />
+
+    <fragment
         android:id="@+id/nav_fragmentListProduto"
         android:name="com.example.desafio4appgas.fragment.FragmentListProduto"
-        android:label="fragment_list_produto"
-        tools:layout="@layout/fragment_list_produto" />
+        android:label="ListarFragmentProduto"
+        tools:layout="@layout/fragment_list_produto">
+        <action
+            android:id="@+id/action_listarFragment_to_editarFragment"
+            app:destination="@id/nav_fragmentCadPedido" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_fragmentCadPedido"
+        android:name="com.example.desafio4appgas.fragment.FragmentCadPedido"
+        android:label="CadFragmentPedido"
+        tools:layout="@layout/fragment_cad_pedido">
+    </fragment>
 
 </navigation>
