@@ -61,7 +61,7 @@
                 android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@mipmap/gas_foreground" />
+                app:srcCompat="@mipmap/gas13promo2_foreground" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>
