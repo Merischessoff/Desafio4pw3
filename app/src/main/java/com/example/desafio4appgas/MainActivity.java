@@ -90,6 +90,44 @@ public class MainActivity extends AppCompatActivity {
                 // Create the AlertDialog object and return it
                 builder.create().show();
                 return true;
+            case R.id.botton_nav_fragmentListPedido:
+                // User chose the "Settings" item, show the app settings UI...
+                builder = new AlertDialog.Builder(this);
+                builder.setTitle("Titulo");
+                //define a mensagem
+                builder.setMessage("abrindo configurações")
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //colocar a ação aqui
+                            }
+                        })
+                        .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //colocar a ação aqui
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                builder.create().show();
+                return true;
+            case R.id.botton_nav_fragmentListProduto:
+                // User chose the "Settings" item, show the app settings UI...
+                builder = new AlertDialog.Builder(this);
+                builder.setTitle("Titulo");
+                //define a mensagem
+                builder.setMessage("abrindo configurações")
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //colocar a ação aqui
+                            }
+                        })
+                        .setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //colocar a ação aqui
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                builder.create().show();
+                return true;
 
             default:
                 // If we got here, the user's action was not recognized.
